@@ -1,11 +1,17 @@
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class User {
     private String name;
     private int score;
     private int cardAmount;
     private List<Tile> tiles;
-    private List<Card> cards;
+    private Map<SourceType,Integer> sources;
+
+    public User() {
+        sources = new HashMap<>();
+    }
 
     public String getName() {
         return name;
@@ -23,7 +29,9 @@ public class User {
         return tiles;
     }
 
-    public List<Card> getCards() {
-        return cards;
+    public Map<SourceType, Integer> getSources() {
+        return sources;
     }
+
+
 }
