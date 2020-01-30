@@ -2,13 +2,20 @@ package fx;
 
 import com.prettybyte.hexagons.Hexagon;
 import com.prettybyte.hexagons.HexagonMap;
+import com.sun.javafx.geom.Area;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.Shape;
+import javafx.scene.text.Text;
 import jdk.internal.module.Resources;
 
 import java.net.URL;
@@ -19,9 +26,7 @@ public class MainController {
 
     @FXML
     public void initialize() {
-
-
-        HexagonMap map = new HexagonMap(50);              // The size of the hexagons
+        HexagonMap map = new HexagonMap(50);
         Hexagon hexagon1 = new Hexagon(2, 1);
         Hexagon hexagon2 = new Hexagon(3, 1);
         Hexagon hexagon3 = new Hexagon(4, 1);
@@ -46,7 +51,6 @@ public class MainController {
         Hexagon hexagon18 = new Hexagon(1, 5);
         Hexagon hexagon19 = new Hexagon(2, 5);
 
-
         Image imageWood = new Image("wood.png");
         Image imageBrick = new Image("brick.png");
         Image imageSheep = new Image("sheep.png");
@@ -54,7 +58,17 @@ public class MainController {
         Image imageOre = new Image("ore.png");
         Image imageDesert = new Image("desert.png");
 
+        Circle circle = new Circle( 100,100,50);
+        circle.setStroke(Color.BLUE);
+        circle.setFill(Color.BLUE.deriveColor(1, 1, 1, 0.3));
 
+        Rectangle rectangle = new Rectangle( 0,0,100,100);
+        rectangle.relocate(200, 200);
+        rectangle.setStroke(Color.GREEN);
+        rectangle.setFill(Color.GREEN.deriveColor(1, 1, 1, 0.3));
+
+        Text text = new Text( "Example Text");
+        text.relocate(300, 300);
         ImagePattern imagePatternWood = new ImagePattern(imageWood);
         hexagon1.setFill(imagePatternWood);
         ImagePattern imagePatternBrick = new ImagePattern(imageBrick);
@@ -80,6 +94,13 @@ public class MainController {
         hexagon17.setFill(imagePatternOre);
         hexagon18.setFill(imagePatternWood);
         hexagon19.setFill(imagePatternWheat);
+
+        //Circle circle = new Circle(150.0f, 150.0f, 80.f);
+        hexagon1.intersects(circle.getLayoutBounds());
+
+
+
+
 
 
         hexagon1.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -108,8 +129,6 @@ public class MainController {
         map.addHexagon(hexagon17);
         map.addHexagon(hexagon18);
         map.addHexagon(hexagon19);
-
-
         map.render(group);
 
         //  Hexagon start = map.getHexagon(-21, 74);               // Try some pathfinding
@@ -117,6 +136,7 @@ public class MainController {
 //        for (Hexagon hexagon1 : start.getPathTo(destination)) {
 //            hexagon1.setBackgroundColor(Color.RED);
 //        }
+
 
     }
 

@@ -1,6 +1,8 @@
 package com.prettybyte.hexagons;
 
 import javafx.application.Platform;
+import javafx.scene.Node;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
 
@@ -21,6 +23,7 @@ public class Hexagon extends Polygon {
     Hexagon aStarCameFrom;
     private int graphicsXoffset;
     private int graphicsYoffset;
+    private  StackPane stackPane;
 
     /**
      * The position of the Hexagon is specified with axial coordinates
@@ -282,6 +285,10 @@ public class Hexagon extends Polygon {
         if (map != null) {
             init();
         }
+    }
+
+    public void setFill2(Node... element) {
+        stackPane.getChildren().addAll(element);
     }
 
     class UIupdater implements Runnable {
